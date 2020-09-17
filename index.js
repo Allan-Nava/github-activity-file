@@ -85,9 +85,9 @@ const commitFile = async () => {
     "config",
     "--global",
     "user.email",
-    "github-activity-bot@example.com",
+    "github-actions@github.com",
   ]);
-  await exec("git", ["config", "--global", "user.name", "github-activity-bot"]);
+  await exec("git", ["config", "--global", "user.name", "github-cactions"]);
   await exec("git", ["add", FILE]);
   await exec("git", ["commit", "-m", COMMIT_MSG]);
   await exec("git", ["push"]);
