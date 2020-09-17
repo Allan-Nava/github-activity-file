@@ -13,7 +13,7 @@ Updates FILE with the recent GitHub activity of a user.
 `.github/workflows/update-file.yml`
 
 ```yml
-name: Update FILE
+name: Update Activity FILE
 
 on:
   schedule:
