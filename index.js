@@ -140,18 +140,21 @@ Toolkit.run(
     let startIdx = fileContent.findIndex(
       (content) => content.trim() === "<!--START_SECTION:activity-->"
     );
-
+    //
+    tools.log.debug(`startIdx ${startIdx} | content: ${content}`);
     // Early return in case the <!--START_SECTION:activity--> comment was not found
     if (startIdx === -1) {
       return tools.exit.failure(
         `Couldn't find the <!--START_SECTION:activity--> comment. Exiting!`
       );
     }
-
+    //
     // Find the index corresponding to <!--END_SECTION:activity--> comment
     const endIdx = fileContent.findIndex(
       (content) => content.trim() === "<!--END_SECTION:activity-->"
     );
+
+    tools.log.debug(`endIdx ${endIdx} | content: ${content}`);
 
     if (!content.length) {
       tools.exit.failure("No PullRequest/Issue/IssueComment events found");
