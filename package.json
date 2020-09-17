@@ -26,7 +26,9 @@
   "dependencies": {
     "@actions/core": "^1.2.5",
     "@zeit/ncc": "^0.22.3",
-    "actions-toolkit": "^6.0.0",
-    "prettier": "^2.1.2"
+    "actions-toolkit": "^6.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.1.2"
   }
 }
