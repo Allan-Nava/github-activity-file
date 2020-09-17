@@ -34,7 +34,6 @@ jobs:
           FILE: 'PATH FILE'
 ```
 
-
 The above job runs every half an hour, you can change it as you wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
 
 Please note that only those public events that belong to the following list show up:-
