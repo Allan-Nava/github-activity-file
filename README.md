@@ -30,6 +30,8 @@ jobs:
       - uses: Allan-Nava/github-activity-file@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          FILE: 'PATH FILE'
 ```
 
 
