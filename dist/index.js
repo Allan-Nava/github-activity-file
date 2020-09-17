@@ -1678,7 +1678,7 @@ module.exports = /******/ (function (modules, runtime) {
           "config",
           "--global",
           "user.email",
-          "github-activity-bot",
+          "github-activity-bot@example.com",
         ]);
         await exec("git", [
           "config",
