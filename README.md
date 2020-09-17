@@ -35,5 +35,9 @@ jobs:
 ```
 
 
+The above job runs every half an hour, you can change it as you wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
+
+Please note that only those public events that belong to the following list show up:-
+
 
 Inspired by <a href="https://github.com/jamesgeorge007/github-activity-readme" _target="blank">github-activity-readme</a>
