@@ -137,5 +137,21 @@ Toolkit.run(
         
         const fileContent = fs.readFileSync(`${FILE}`, "utf-8").split("\n");
         console.log(fileContent);
+        // Find the index corresponding to <!--START_SECTION:activity--> comment
+        let startIdx = fileContent.findIndex(
+            (content) => content.trim() === "<!--START_SECTION:activity-->"
+        );
+
+        // Early return in case the <!--START_SECTION:activity--> comment was not found
+        if (startIdx === -1) {
+            return tools.exit.failure(
+                `Couldn't find the <!--START_SECTION:activity--> comment. Exiting!`
+            );
+        }
+
+        // Find the index corresponding to <!--END_SECTION:activity--> comment
+        const endIdx = fileContent.findIndex(
+            (content) => content.trim() === "<!--END_SECTION:activity-->"
+        );
     }
 );
