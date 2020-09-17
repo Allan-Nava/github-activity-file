@@ -1727,7 +1727,8 @@ module.exports = /******/ (function (modules, runtime) {
             .slice(0, MAX_LINES)
             // Call the serializer to construct a string
             .map((item) => serializers[item.type](item));
-
+          //
+          tools.log.debug(`Events data: ${events.data} .`);
           const fileContent = fs.readFileSync(`${FILE}`, "utf-8").split("\n");
           tools.log.debug("fileContent " + fileContent);
           //console.log(fileContent);
