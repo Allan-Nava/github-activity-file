@@ -164,18 +164,18 @@ Toolkit.run(
       // Add one since the content needs to be inserted just after the initial comment
       startIdx++;
       content.forEach((line, idx) =>
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
+        fileContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
       );
 
       // Append <!--END_SECTION:activity--> comment
-      readmeContent.splice(
+      fileContent.splice(
         startIdx + content.length,
         0,
         "<!--END_SECTION:activity-->"
       );
 
       // Update README
-      fs.writeFileSync("./README.md", readmeContent.join("\n"));
+      fs.writeFileSync("./README.md", fileContent.join("\n"));
 
       // Commit to the remote repository
       try {
@@ -187,7 +187,7 @@ Toolkit.run(
       tools.exit.success("Wrote to README");
     }
 
-    const oldContent = readmeContent.slice(startIdx + 1, endIdx).join("\n");
+    const oldContent = fileContent.slice(startIdx + 1, endIdx).join("\n");
     const newContent = content
       .map((line, idx) => `${idx + 1}. ${line}`)
       .join("\n");
@@ -198,14 +198,14 @@ Toolkit.run(
     startIdx++;
 
     // Recent GitHub Activity content between the comments
-    const readmeActivitySection = readmeContent.slice(startIdx, endIdx);
+    const readmeActivitySection = fileContent.slice(startIdx, endIdx);
     if (!readmeActivitySection.length) {
       content.some((line, idx) => {
         // User doesn't have 5 public events
         if (!line) {
           return true;
         }
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+        fileContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
       });
       tools.log.success("Wrote to FILE: " + FILE);
     } else {
@@ -218,7 +218,7 @@ Toolkit.run(
           return true;
         }
         if (line !== "") {
-          readmeContent[startIdx + idx] = `${count + 1}. ${content[count]}`;
+          fileContent[startIdx + idx] = `${count + 1}. ${content[count]}`;
           count++;
         }
       });
@@ -226,7 +226,7 @@ Toolkit.run(
     }
 
     // Update README
-    fs.writeFileSync(FILE, readmeContent.join("\n"));
+    fs.writeFileSync(FILE, fileContent.join("\n"));
 
     // Commit to the remote repository
     try {
