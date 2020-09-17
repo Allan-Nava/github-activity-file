@@ -1686,7 +1686,7 @@ module.exports = /******/ (function (modules, runtime) {
           "user.name",
           "github-activity-bot",
         ]);
-        await exec("git", ["add", "-A"]);
+        await exec("git", ["add", FILE]);
         await exec("git", ["commit", "-m", COMMIT_MSG]);
         await exec("git", ["push"]);
       };
@@ -1793,7 +1793,7 @@ module.exports = /******/ (function (modules, runtime) {
             try {
               await commitFile();
             } catch (err) {
-              tools.log.debug("Something went wrong");
+              tools.log.debug("Something went wrong " + err);
               return tools.exit.failure(err);
             }
             tools.exit.success("Wrote to FILE");
@@ -1835,10 +1835,11 @@ module.exports = /******/ (function (modules, runtime) {
                 count++;
               }
             });
-            tools.log.success("Updated FILE with the recent activity");
+            tools.log.debug(`readmeActivitySection= ${readmeActivitySection} `);
+            tools.log.success("Updated FILE with the recent activity. ");
           }
 
-          // Update README
+          // Update FILE
           fs.writeFileSync(FILE, fileContent.join("\n"));
 
           // Commit to the remote repository
@@ -1846,7 +1847,7 @@ module.exports = /******/ (function (modules, runtime) {
             tools.log.success("Commit to the remote repository: " + FILE);
             await commitFile();
           } catch (err) {
-            tools.log.debug("Something went wrong");
+            tools.log.debug("Something went wrong " + err);
             return tools.exit.failure(err);
           }
           tools.exit.success("Pushed to remote repository");

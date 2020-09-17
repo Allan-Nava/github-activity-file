@@ -88,7 +88,7 @@ const commitFile = async () => {
     "github-activity-bot@example.com",
   ]);
   await exec("git", ["config", "--global", "user.name", "github-activity-bot"]);
-  await exec("git", ["add", "-A"]);
+  await exec("git", ["add", FILE]);
   await exec("git", ["commit", "-m", COMMIT_MSG]);
   await exec("git", ["push"]);
 };
@@ -191,7 +191,7 @@ Toolkit.run(
       try {
         await commitFile();
       } catch (err) {
-        tools.log.debug("Something went wrong");
+        tools.log.debug("Something went wrong " + err);
         return tools.exit.failure(err);
       }
       tools.exit.success("Wrote to FILE");
@@ -233,10 +233,11 @@ Toolkit.run(
           count++;
         }
       });
-      tools.log.success("Updated FILE with the recent activity");
+      tools.log.debug(`readmeActivitySection= ${readmeActivitySection} `);
+      tools.log.success("Updated FILE with the recent activity. ");
     }
 
-    // Update README
+    // Update FILE
     fs.writeFileSync(FILE, fileContent.join("\n"));
 
     // Commit to the remote repository
@@ -244,7 +245,7 @@ Toolkit.run(
       tools.log.success("Commit to the remote repository: " + FILE);
       await commitFile();
     } catch (err) {
-      tools.log.debug("Something went wrong");
+      tools.log.debug("Something went wrong " + err);
       return tools.exit.failure(err);
     }
     tools.exit.success("Pushed to remote repository");
