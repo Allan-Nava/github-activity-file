@@ -1,6 +1,6 @@
 {
   "name": "github-activity-file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Updates FILES  with the recent GitHub activity of a user",
   "main": "index.js",
   "scripts": {
