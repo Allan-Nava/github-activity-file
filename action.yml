@@ -1,0 +1,25 @@
+name: GitHub - Activity - FILE
+description: Updates FILE with the recent GitHub activity of a user
+author: Allan-Nava
+#
+inputs:
+  GH_USERNAME:
+    description: 'Your GitHub username'
+    default: ${{ github.repository_owner }}
+    required: false
+  COMMIT_MSG:
+    description: "Commit message used while committing to the repo"
+    default: ":zap: Update README with the recent activity"
+    required: false
+  FILE:
+    description: "FILE used to be updated"
+    required: true
+#
+branding:
+  color: orange
+  icon: activity
+#
+runs:
+  using: node12
+  main: dist/index.js
+#
