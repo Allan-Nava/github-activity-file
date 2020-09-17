@@ -184,8 +184,8 @@ Toolkit.run(
         "<!--END_SECTION:activity-->"
       );
 
-      // Update README
-      fs.writeFileSync("./README.md", fileContent.join("\n"));
+      // Update FILE
+      fs.writeFileSync(FILE, fileContent.join("\n"));
 
       // Commit to the remote repository
       try {
@@ -208,8 +208,8 @@ Toolkit.run(
     startIdx++;
 
     // Recent GitHub Activity content between the comments
-    const readmeActivitySection = fileContent.slice(startIdx, endIdx);
-    if (!readmeActivitySection.length) {
+    const fileActivitySection = fileContent.slice(startIdx, endIdx);
+    if (!fileActivitySection.length) {
       content.some((line, idx) => {
         // User doesn't have 5 public events
         tools.log.success("User doesn't have 5 public events: " + FILE);
@@ -223,7 +223,7 @@ Toolkit.run(
       // It is likely that a newline is inserted after the <!--START_SECTION:activity--> comment (code formatter)
       let count = 0;
 
-      readmeActivitySection.some((line, idx) => {
+      fileActivitySection.some((line, idx) => {
         // User doesn't have 5 public events
         if (!content[count]) {
           return true;
@@ -233,7 +233,7 @@ Toolkit.run(
           count++;
         }
       });
-      tools.log.debug(`readmeActivitySection= ${readmeActivitySection} `);
+      //tools.log.debug(`fileActivitySection= ${fileActivitySection} `);
       tools.log.success("Updated FILE with the recent activity. ");
     }
 
