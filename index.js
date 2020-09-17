@@ -114,3 +114,28 @@ const serializers = {
     },
 };
   
+
+Toolkit.run(
+    async (tools) => {
+        // Get the user's public events
+        tools.log.debug(`Getting activity for ${GH_USERNAME}`);
+        const events = await tools.github.activity.listPublicEventsForUser({
+            username: GH_USERNAME,
+            per_page: 100,
+        });
+        tools.log.debug(
+            `Activity for ${GH_USERNAME}, ${events.data.length} events found.`
+        );
+        const content = events.data
+            // Filter out any boring activity
+            .filter((event) => serializers.hasOwnProperty(event.type))
+            // We only have five lines to work with
+            .slice(0, MAX_LINES)
+            // Call the serializer to construct a string
+            .map((item) => serializers[item.type](item));
+        
+        
+        const fileContent = fs.readFileSync(`${FILE}`, "utf-8").split("\n");
+        console.log(fileContent);
+    }
+);
