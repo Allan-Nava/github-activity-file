@@ -134,7 +134,8 @@ Toolkit.run(
       .map((item) => serializers[item.type](item));
 
     const fileContent = fs.readFileSync(`${FILE}`, "utf-8").split("\n");
-    console.log(fileContent);
+    tools.log.debug("fileContent " + fileContent);
+    //console.log(fileContent);
     // Find the index corresponding to <!--START_SECTION:activity--> comment
     let startIdx = fileContent.findIndex(
       (content) => content.trim() === "<!--START_SECTION:activity-->"
@@ -184,7 +185,7 @@ Toolkit.run(
         tools.log.debug("Something went wrong");
         return tools.exit.failure(err);
       }
-      tools.exit.success("Wrote to README");
+      tools.exit.success("Wrote to FILE");
     }
 
     const oldContent = fileContent.slice(startIdx + 1, endIdx).join("\n");
@@ -202,6 +203,7 @@ Toolkit.run(
     if (!readmeActivitySection.length) {
       content.some((line, idx) => {
         // User doesn't have 5 public events
+        tools.log.success("User doesn't have 5 public events: " + FILE);
         if (!line) {
           return true;
         }
@@ -230,6 +232,7 @@ Toolkit.run(
 
     // Commit to the remote repository
     try {
+      tools.log.success("Commit to the remote repository: " + FILE);
       await commitFile();
     } catch (err) {
       tools.log.debug("Something went wrong");
