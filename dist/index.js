@@ -1661,6 +1661,8 @@ Toolkit.run(
         const endIdx = fileContent.findIndex(
             (content) => content.trim() === "<!--END_SECTION:activity-->"
         );
+
+        
     }
 );
 
