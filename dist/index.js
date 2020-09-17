@@ -1707,6 +1707,11 @@ module.exports = /******/ (function (modules, runtime) {
             item.repo.name
           )}`;
         },
+        CommitCommentEvent: (item) => {
+          return `📝 Commit on ${toUrlFormat(item)} in ${toUrlFormat(
+            item.repo.name
+          )}`;
+        },
       };
 
       Toolkit.run(

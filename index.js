@@ -112,6 +112,11 @@ const serializers = {
       : `${emoji} ${capitalize(item.payload.action)}`;
     return `${line} PR ${toUrlFormat(item)} in ${toUrlFormat(item.repo.name)}`;
   },
+  CommitCommentEvent: (item) => {
+    return `📝 Commit on ${toUrlFormat(item)} in ${toUrlFormat(
+      item.repo.name
+    )}`;
+  },
 };
 
 Toolkit.run(
