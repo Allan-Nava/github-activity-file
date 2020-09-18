@@ -1684,7 +1684,7 @@ module.exports = /******/ (function (modules, runtime) {
           "config",
           "--global",
           "user.name",
-          "github-cactions",
+          "github-actions",
         ]);
         await exec("git", ["add", "-A"]);
         await exec("git", ["commit", "-m", COMMIT_MSG]);
