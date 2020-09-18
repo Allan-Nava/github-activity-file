@@ -1791,6 +1791,7 @@ module.exports = /******/ (function (modules, runtime) {
 
             // Commit to the remote repository
             try {
+              tools.log.debug("await commitFile: " + fileContent);
               await commitFile();
             } catch (err) {
               tools.log.debug("Something went wrong " + err);
@@ -1847,7 +1848,7 @@ module.exports = /******/ (function (modules, runtime) {
             tools.log.success("Commit to the remote repository: " + FILE);
             await commitFile();
           } catch (err) {
-            tools.log.debug("Something went wrong " + err);
+            tools.log.debug("Something went wrong | updated file" + err);
             return tools.exit.failure(err);
           }
           tools.exit.success("Pushed to remote repository");
