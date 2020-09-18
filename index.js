@@ -1,7 +1,7 @@
 /*
  *  index.js
  *  Allan Nava 2020-09-17
- *  Allan Nava 2020-09-17
+ *  Allan Nava 2020-09-18
  *
  *  Created by [ Allan Nava ].
  *  Updated by [ Allan Nava ]
@@ -88,7 +88,7 @@ const commitFile = async () => {
     "github-actions@github.com",
   ]);
   await exec("git", ["config", "--global", "user.name", "github-cactions"]);
-  await exec("git", ["add", FILE]);
+  await exec("git", ["add", "-A"]);
   await exec("git", ["commit", "-m", COMMIT_MSG]);
   await exec("git", ["push"]);
 };
@@ -249,6 +249,7 @@ Toolkit.run(
       tools.log.debug("Something went wrong | updated file" + err);
       return tools.exit.failure(err);
     }
+    tools.log.info(`fileContent ${fileContent} | ${FILE} `);
     tools.exit.success("Pushed to remote repository");
   },
   {

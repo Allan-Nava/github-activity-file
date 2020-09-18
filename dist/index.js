@@ -1594,7 +1594,7 @@ module.exports = /******/ (function (modules, runtime) {
       /*
        *  index.js
        *  Allan Nava 2020-09-17
-       *  Allan Nava 2020-09-17
+       *  Allan Nava 2020-09-18
        *
        *  Created by [ Allan Nava ].
        *  Updated by [ Allan Nava ]
@@ -1686,7 +1686,7 @@ module.exports = /******/ (function (modules, runtime) {
           "user.name",
           "github-cactions",
         ]);
-        await exec("git", ["add", FILE]);
+        await exec("git", ["add", "-A"]);
         await exec("git", ["commit", "-m", COMMIT_MSG]);
         await exec("git", ["push"]);
       };
@@ -1851,6 +1851,7 @@ module.exports = /******/ (function (modules, runtime) {
             tools.log.debug("Something went wrong | updated file" + err);
             return tools.exit.failure(err);
           }
+          tools.log.info(`fileContent ${fileContent} | ${FILE} `);
           tools.exit.success("Pushed to remote repository");
         },
         {
