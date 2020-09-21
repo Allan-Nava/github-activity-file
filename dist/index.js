@@ -1674,6 +1674,7 @@ module.exports = /******/ (function (modules, runtime) {
        */
 
       const commitFile = async () => {
+        console.log("commitFile ", COMMIT_MSG);
         await exec("git", [
           "config",
           "--global",
@@ -1689,6 +1690,7 @@ module.exports = /******/ (function (modules, runtime) {
         await exec("git", ["add", "-A"]);
         await exec("git", ["commit", "-m", COMMIT_MSG]);
         await exec("git", ["push"]);
+        console.log("commitFile pushed", COMMIT_MSG);
       };
       //
 
