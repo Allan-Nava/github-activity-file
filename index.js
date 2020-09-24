@@ -1,7 +1,7 @@
 /*
  *  index.js
  *  Allan Nava 2020-09-17
- *  Allan Nava 2020-09-18
+ *  Allan Nava 2020-09-24
  *
  *  Created by [ Allan Nava ].
  *  Updated by [ Allan Nava ]
@@ -120,7 +120,7 @@ const serializers = {
     )}`;
   },
 };
-
+///
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
@@ -204,12 +204,13 @@ Toolkit.run(
     const newContent = content
       .map((line, idx) => `${idx + 1}. ${line}`)
       .join("\n");
-
+    //
+    tools.log.info(`newContent= ${newContent} `);
     if (oldContent.trim() === newContent.trim())
       tools.exit.success("No changes detected");
-
+    //
     startIdx++;
-
+    //
     // Recent GitHub Activity content between the comments
     const fileActivitySection = fileContent.slice(startIdx, endIdx);
     if (!fileActivitySection.length) {
@@ -220,6 +221,7 @@ Toolkit.run(
           return true;
         }
         fileContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+        tools.log.info(`fileContent.splice= ${fileContent} `);
       });
       tools.log.success("Wrote to FILE: " + FILE);
     } else {
@@ -233,6 +235,9 @@ Toolkit.run(
         }
         if (line !== "") {
           fileContent[startIdx + idx] = `${count + 1}. ${content[count]}`;
+          tools.log.info(
+            `fileContent[startIdx + idx]= ${fileContent[startIdx + idx]} `
+          );
           count++;
         }
       });
