@@ -1631,7 +1631,6 @@ module.exports = /******/ (function (modules, runtime) {
        *
        * @returns {String}
        */
-
       const toUrlFormat = (item) => {
         if (typeof item === "object") {
           return Object.hasOwnProperty.call(item.payload, "issue")
@@ -1640,7 +1639,6 @@ module.exports = /******/ (function (modules, runtime) {
         }
         return `[${item}](${urlPrefix}/${item})`;
       };
-
       /**
        * Execute shell command
        * @param {String} cmd - root command
