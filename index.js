@@ -40,7 +40,7 @@ const urlPrefix = "https://github.com/";
  */
 const toUrlFormat = (item) => {
   if (typeof item === "object") {
-    console.log(`item = ${item}`);
+    console.log(`item = ${item} | ${item.payload.issue}`);
     return Object.hasOwnProperty.call(item.payload, "issue")
       ? `[#${item.payload.issue.number}](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
       : `[#${item.payload.pull_request.number}](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
